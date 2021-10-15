@@ -5,17 +5,29 @@ import java.util.Scanner;
 
 public class Append {
 
-    public void append(String path, String toAppend) throws PathException, IOException {
+    public void append(String path, String toAppend) throws PathException {
 
-        File input = new File(path);
 
-        FileWriter fw = new FileWriter(input, true);
-        BufferedWriter bw = new BufferedWriter(fw);
-        bw.write(toAppend);
-        bw.close();
+        try {
+            File input = new File(path);
+            BufferedReader br = new BufferedReader(new FileReader(input));
+            BufferedWriter bw = new BufferedWriter(new FileWriter(input, true));
+            bw.append(toAppend);
+
+            br.close();
+            bw.close();
+
+        } catch (DirectoryNotEmptyException e)
+        {
+            throw new PathException();
+        } catch (FileNotFoundException e) {
+            throw new PathException();
+        } catch (IOException e) {
+            throw new PathException();
+        }
     }
 
-    public static void main(String[] args) throws PathException {
+    public static void main(String[] args) throws PathException, DirectoryNotEmptyException {
 
         Scanner scan = new Scanner(System.in);
 
@@ -28,8 +40,6 @@ public class Append {
         Append a = new Append();
         try {
             a.append(path, toAppend);
-        } catch (DirectoryNotEmptyException e) {
-            e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }
