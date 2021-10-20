@@ -1,4 +1,4 @@
-package com.example.cs180_week8.Week8.Challenge;
+package com.example.cs180.Week8.Challenge;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;

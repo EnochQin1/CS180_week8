@@ -11,7 +11,7 @@ public class Notes
         - t.start(): start the thread referenced by t
         - t.join(): "join with" (wait for) the running thread t
         - t.run(): called by start() in a different thread
-    -
+
      */
     public static void main(String[] args) {
         Thread t = new Thread();
