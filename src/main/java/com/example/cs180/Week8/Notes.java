@@ -1,4 +1,4 @@
-package com.example.cs180_week8.Week8;
+package com.example.cs180.Week8;
 
 public class Notes
 {

@@ -1,4 +1,4 @@
-package com.example.cs180_week8.Week8;
+package com.example.cs180.Week8;
 import java.io.*;
 import java.nio.file.DirectoryNotEmptyException;
 import java.util.Scanner;
