@@ -2,7 +2,7 @@ package com.example.cs180.Week10.Challenge;
 
 import java.io.*;
 import java.util.ArrayList;
-
+//Challenge
 public class MazeNavigator extends Thread {
     private static int currentRow;
     private static int currentColumn;
