@@ -11,21 +11,29 @@ public class MazeNavigator extends Thread {
     private static char[][] maze;
     private int playerNumber;
     private String fileName;
+    private static Object obj = new Object();
     public MazeNavigator(int playerNumber, String filename) {
         this.playerNumber = playerNumber;
         this.fileName = filename;
         this.maze = new char[10][10];
+        synchronized (obj) {
+            for (int i = 0; i < maze.length; i++) {
+                for (int j = 0; j < maze[i].length; j++) {
+                    this.maze[i][j] = ' ';
+                }
+            }
+            this.currentRow = 4;
+            this.currentColumn = 4;
+            maze[currentRow][currentColumn] = 'X';
+            this.moveNumber = 0;
+            if (this.started != true) {
+                System.out.println("Welcome! Initial Maze:");
+                this.printMap();
+            }
+            this.started = true;
+        }
     }
     public void run() {
-        for (int i = 0; i < maze.length; i++) {
-            for (int j = 0; j < maze[i].length; j++) {
-                this.maze[i][j] = ' ';
-            }
-        }
-        this.currentRow = 4;
-        this.currentColumn = 4;
-        maze[currentRow][currentColumn] = 'X';
-        this.moveNumber = 0;
         try {
             File f = new File(this.fileName);
             FileReader fr = new FileReader(f);
@@ -36,8 +44,7 @@ public class MazeNavigator extends Thread {
                 moves.add(Integer.parseInt(move));
                 move = bfr.readLine();
             }
-            System.out.println("Welcome! Initial Maze:");
-            this.printMap();
+            synchronized (obj) {
             int counter = 0;
             while (counter < moves.size()) {
                 moveNumber++;
@@ -58,14 +65,15 @@ public class MazeNavigator extends Thread {
                 } else {
                     System.out.println("Error, invalid input!");
                 }
-                this.printMap();
                 counter++;
+                this.printMap();
+            }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    public synchronized void moveLeft() {
+    public void moveLeft() {
         maze[currentRow][currentColumn] = ' ';
         if (currentColumn == 0) {
             currentColumn = 9;
@@ -74,7 +82,7 @@ public class MazeNavigator extends Thread {
         }
         maze[currentRow][currentColumn] = 'X';
     }
-    public synchronized void moveRight() {
+    public void moveRight() {
         maze[currentRow][currentColumn] = ' ';
         if (currentColumn == 9) {
             currentColumn = 0;
@@ -83,7 +91,7 @@ public class MazeNavigator extends Thread {
         }
         maze[currentRow][currentColumn] = 'X';
     }
-    public synchronized void moveUp() {
+    public void moveUp() {
         maze[currentRow][currentColumn] = ' ';
         if (currentRow == 0) {
             currentRow = 9;
@@ -92,7 +100,7 @@ public class MazeNavigator extends Thread {
         }
         maze[currentRow][currentColumn] = 'X';
     }
-    public synchronized void moveDown() {
+    public void moveDown() {
         maze[currentRow][currentColumn] = ' ';
         if (currentRow == 9) {
             currentRow = 0;
@@ -101,15 +109,17 @@ public class MazeNavigator extends Thread {
         }
         maze[currentRow][currentColumn] = 'X';
     }
-    public synchronized void printMap() {
-        for (int i = 0; i < maze.length; i++) {
-            for (int j = 0; j < maze[i].length; j++) {
-                if (j == 9) {
-                    System.out.println(this.maze[i][j] + "]");
-                } else if (j == 0) {
-                    System.out.print("[" + this.maze[i][j] + ",");
-                } else {
-                    System.out.print(this.maze[i][j] + ",");
+    public void printMap() {
+        synchronized (obj) {
+            for (int i = 0; i < maze.length; i++) {
+                for (int j = 0; j < maze[i].length; j++) {
+                    if (j == 9) {
+                        System.out.println(this.maze[i][j] + "]");
+                    } else if (j == 0) {
+                        System.out.print("[" + this.maze[i][j] + ",");
+                    } else {
+                        System.out.print(this.maze[i][j] + ",");
+                    }
                 }
             }
         }
