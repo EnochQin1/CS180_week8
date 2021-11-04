@@ -1,8 +1,14 @@
 package com.example.cs180.Week10.Challenge;
-
 import java.io.*;
 import java.util.ArrayList;
-//Challenge
+/**
+ * A program that writes maps and allows players to change the position.
+ *
+ * Purdue University -- CS18000 -- Fall 2021 -- Homework 10 -- Challenge
+ *
+ * @author Enoch_Qin Purdue CS
+ * @version October 31, 2021
+ */
 public class MazeNavigator extends Thread {
     private static int currentRow;
     private static int currentColumn;
@@ -45,29 +51,29 @@ public class MazeNavigator extends Thread {
                 move = bfr.readLine();
             }
             synchronized (obj) {
-            int counter = 0;
-            while (counter < moves.size()) {
-                moveNumber++;
-                System.out.println("Move Number: " + this.moveNumber);
-                System.out.println("Player: " + this.playerNumber);
-                if (moves.get(counter) == 1) {
-                    this.moveLeft();
-                    System.out.println("Move: Left");
-                } else if (moves.get(counter) == 2) {
-                    this.moveRight();
-                    System.out.println("Move: Right");
-                } else if (moves.get(counter) == 3) {
-                    this.moveUp();
-                    System.out.println("Move: Up");
-                } else if (moves.get(counter) == 4) {
-                    this.moveDown();
-                    System.out.println("Move: Down");
-                } else {
-                    System.out.println("Error, invalid input!");
+                int counter = 0;
+                while (counter < moves.size()) {
+                    moveNumber++;
+                    System.out.println("Move Number: " + this.moveNumber);
+                    System.out.println("Player: " + this.playerNumber);
+                    if (moves.get(counter) == 1) {
+                        this.moveLeft();
+                        System.out.println("Move: Left");
+                    } else if (moves.get(counter) == 2) {
+                        this.moveRight();
+                        System.out.println("Move: Right");
+                    } else if (moves.get(counter) == 3) {
+                        this.moveUp();
+                        System.out.println("Move: Up");
+                    } else if (moves.get(counter) == 4) {
+                        this.moveDown();
+                        System.out.println("Move: Down");
+                    } else {
+                        System.out.println("Error, invalid input!");
+                    }
+                    counter++;
+                    this.printMap();
                 }
-                counter++;
-                this.printMap();
-            }
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -122,22 +128,6 @@ public class MazeNavigator extends Thread {
                     }
                 }
             }
-        }
-    }
-    public static void main(String[] args) {
-        try {
-            MazeNavigator[] mazeNavigators = {new MazeNavigator(1, "PlayerOneMoves.txt"),
-                    new MazeNavigator(2, "PlayerTwoMoves.txt")};
-
-            for (int i = 0; i < mazeNavigators.length; i++) {
-                mazeNavigators[i].start();
-            }
-            for (int i = 0; i < mazeNavigators.length; i++) {
-                mazeNavigators[i].join();
-            }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            return;
         }
     }
 }
