@@ -94,5 +94,6 @@ public class StatisticsServer {
                 }
             }
         }
+        socket.close();
     }
 }
