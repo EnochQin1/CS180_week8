@@ -7,9 +7,10 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+
 /**
  * A Server implementation of the statistics program.
- *
+ * <p>
  * Purdue University -- CS18000 -- Fall 2021 -- Homework 11 -- Challenge
  *
  * @author Enoch_Qin Purdue CS
@@ -35,7 +36,8 @@ public class StatisticsServer {
                 String[] wordForm = input.split(" ");
                 numWords = wordForm.length;
                 for (int i = 0; i < input.length(); i++) {
-                    if (input.charAt(i) == '!' || input.charAt(i) == ',' || input.charAt(i) == ';' || input.charAt(i) == '.' ||
+                    if (input.charAt(i) == '!' || input.charAt(i) == ',' ||
+                            input.charAt(i) == ';' || input.charAt(i) == '.' ||
                             input.charAt(i) == '?' || input.charAt(i) == '-' ||
                             input.charAt(i) == '\'' || input.charAt(i) == '\"' || input.charAt(i) == ':') {
                         puncMarks++;
@@ -60,9 +62,12 @@ public class StatisticsServer {
                         digitFreq += (ints[i] + "-" + intNums[i] + " ");
                     }
                 }
-                char[] alpha = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o',
-                        'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
-                int[] alphNums = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+                char[] alpha = {'a', 'b', 'c', 'd', 'e', 'f', 'g',
+                                'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o',
+                                'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x',
+                                'y', 'z'};
+                int[] alphNums = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                                  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
                 String freqChecker = input.toLowerCase();
                 for (int i = 0; i < alpha.length; i++) {
                     for (int j = 0; j < input.length(); j++) {

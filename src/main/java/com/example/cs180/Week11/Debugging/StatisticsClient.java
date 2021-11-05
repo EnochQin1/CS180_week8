@@ -81,7 +81,8 @@ public class StatisticsClient {
                                 }
                                 JOptionPane.showMessageDialog(null,
                                         finalInfo, "Your String's information", JOptionPane.INFORMATION_MESSAGE);
-                                int again = JOptionPane.showConfirmDialog(null, "Would you like to enter another string?",
+                                int again = JOptionPane.showConfirmDialog(null,
+                                        "Would you like to enter another string?",
                                         "Continue?", JOptionPane.YES_NO_OPTION);
                                 writer.write(again);
                                 writer.flush();
@@ -96,7 +97,7 @@ public class StatisticsClient {
                 } catch (UnknownHostException e) {
                     JOptionPane.showMessageDialog(null, "Invalid host name or port number", "Error",
                             JOptionPane.ERROR_MESSAGE);
-                    System.exit(0);
+                    exitNow = true;
                 }
             }
         }
