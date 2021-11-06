@@ -13,4 +13,8 @@ public class Reply {
     public int getVotes() {
         return this.votes;
     }
+    public String getMessage() {
+        return this.message;
+    }
+
 }
