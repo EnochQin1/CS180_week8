@@ -8,6 +8,7 @@ import java.util.Comparator;
 public class DiscussionPost {
     private String topic;
     private String prompt;
+    private char firstLetter;
     private int votes;
     private ArrayList<Reply> replies;
     public DiscussionPost(String topic, String prompt) {
@@ -15,6 +16,7 @@ public class DiscussionPost {
         this.prompt = prompt;
         this.votes = 0;
         this.replies = new ArrayList<Reply>();
+        this.firstLetter = topic.charAt(0);
     }
     public void addVote() {
         this.votes++;
