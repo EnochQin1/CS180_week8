@@ -1,5 +1,6 @@
 package com.example.cs180.Project4;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -11,17 +12,21 @@ public class DiscussionPost {
     private String prompt;
     private int votes;
     private ArrayList<Reply> replies;
+    private LocalTime timeCreated;
 
     public DiscussionPost(String topic, String prompt) {
         this.topic = topic;
         this.prompt = prompt;
         this.votes = 0;
         this.replies = new ArrayList<Reply>();
+        this.timeCreated = java.time.LocalTime.now();
     }
 
     public void addVote() {
         this.votes++;
     }
+
+    public LocalTime getTimeCreated() { return this.timeCreated; }
 
     public int getVotes() {
         return this.votes;
@@ -54,10 +59,6 @@ public class DiscussionPost {
     public void sortRepliesByTime() {
         Collections.sort(replies, new TimeComparator());
         ArrayList<Reply> finalList = new ArrayList<>();
-        //for ( int i = replies.size() - 1; i >= 0; i--) {
-            //finalList.add(replies.get(i));
-        //}
-        //replies = finalList;
     }
     public String getTopic() {
         return this.topic;
@@ -71,34 +72,4 @@ public class DiscussionPost {
         return this.replies.size();
     }
 
-    public static void main(String[] args) {
-        Reply test2 = new Reply("2");
-        try {
-            TimeUnit.SECONDS.sleep(2);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        Reply test1 = new Reply("1");
-        try {
-            TimeUnit.SECONDS.sleep(2);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        Reply test3 = new Reply("3");
-        test3.addVote();
-        test3.addVote();
-        test2.addVote();
-        test1.addVote();
-        test1.addVote();
-        test1.addVote();
-        test1.addVote();
-        DiscussionPost disTest = new DiscussionPost("test", "test");
-        disTest.addReply(test2);
-        disTest.addReply(test1);
-        disTest.addReply(test3);
-        disTest.sortRepliesByTime();
-        for (int i = 0; i < disTest.replies.size(); i++) {
-            System.out.println(disTest.replies.get(i).getMessage());
-        }
-    }
 }
