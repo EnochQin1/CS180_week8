@@ -58,7 +58,6 @@ public class DiscussionPost {
     }
     public void sortRepliesByTime() {
         Collections.sort(replies, new TimeComparator());
-        ArrayList<Reply> finalList = new ArrayList<>();
     }
     public String getTopic() {
         return this.topic;
