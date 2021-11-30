@@ -6,10 +6,17 @@ public class Reply {
     private int votes;
     private String message;
     private LocalTime timeCreated;
-    public Reply(String message) {
+    //private Student student;
+    /*
+    public Reply(String message, Student student) {
         this.message = message;
         this.votes = 0;
         this.timeCreated = java.time.LocalTime.now();
+        this.student = student;
+    }
+     */
+    public Reply(String message) {
+
     }
     public void addVote() {
         this.votes++;
@@ -21,8 +28,5 @@ public class Reply {
         return this.message;
     }
     public LocalTime getTimeCreated() { return timeCreated; }
-    public static void main(String[] args) {
-        Reply test = new Reply("testing");
-        System.out.println(test.getTimeCreated());
-    }
+    //public void getStudent() { return this.student; }
 }

@@ -71,4 +71,11 @@ public class DiscussionPost {
         return this.replies.size();
     }
 
+    public String toString() {
+        String returnStatement = "";
+        for (int i = 0; i < this.replies.size(); i++) {
+            returnStatement += ("~~" + this.replies.get(i).getMessage());
+        }
+        return returnStatement;
+    }
 }
